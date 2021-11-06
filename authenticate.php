@@ -25,10 +25,7 @@ if($stmt = $con->prepare('SELECT id, password FROM users WHERE username = ?')){
         $stmt->bind_result($id, $password);
         $stmt->fetch();
 
-        //if (password_verify($_POST['password'], $password)
-        if ($_POST['password'] === $password){
-        
-
+        if(password_verify($_POST['password'], $password)){
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $_POST['username'];
